@@ -37,11 +37,8 @@ async def update_todo(
 
 @todo_router.delete(
     "/{todo_id}",
-    summary="update one todo instance",
+    summary="delete one todo instance",
 )
 async def delete_todo(todo_id: UUID, current_user: User = Depends(get_current_user)):
-    try:
-        await TodoService.delete_todo(todo_id, current_user)
-        return None
-    except:
-        pass
+    await TodoService.delete_todo(todo_id, current_user)
+    return None
